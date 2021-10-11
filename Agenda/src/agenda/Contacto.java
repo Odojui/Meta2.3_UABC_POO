@@ -14,6 +14,15 @@ public class Contacto {
     String nombre;
     Calendar cumple = new GregorianCalendar();
     
+    public Contacto()
+    {
+        numero = "0";
+        nombre = "A";
+        cumple.set(Calendar.YEAR, 0);
+        cumple.set(Calendar.MONTH, 0);
+        cumple.set(Calendar.DAY_OF_MONTH, 0);
+    }
+    
     public Contacto(String numero, String nombre, int dia, int mes, int año)
     {
         this.numero = numero;

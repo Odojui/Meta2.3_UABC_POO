@@ -127,15 +127,15 @@ public class Agenda {
                 break;
         }
         System.out.println("Busqueda");
-        String nombreBuscar="Nombre: Luis. Número: 6861519874. Cumpleaños: 2001-07-15";
-        
-        boolean existencia = contactos.contains(nombreBuscar);
-        for(int k=0;k<=contactos.size();k++){
+        String nombreBuscar="Luis";
+        for(int k=0;k<=contactos.size()-1;k++){
+            String nombreComparar = contactos.get(k).getNombre();
+            boolean existencia = nombreBuscar.compareTo(nombreComparar)==0;
             if(existencia){
-            System.out.println("Existe");
-        }else{
-            System.out.println("No existe");
-        }
+                System.out.println("Existe");
+            }else{
+                System.out.println("No existe");
+            }
         }
     }
     public void busqueda(){

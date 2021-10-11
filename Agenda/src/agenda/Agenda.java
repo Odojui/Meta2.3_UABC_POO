@@ -128,9 +128,10 @@ public class Agenda {
         }
         System.out.println("Busqueda");
         String nombreBuscar="Nombre: Luis. Número: 6861519874. Cumpleaños: 2001-07-15";
-        for(int k=0;k<=contactos.size();k++){
+        
         boolean existencia = contactos.contains(nombreBuscar);
-        if(existencia){
+        for(int k=0;k<=contactos.size();k++){
+            if(existencia){
             System.out.println("Existe");
         }else{
             System.out.println("No existe");

@@ -71,6 +71,7 @@ public class Agenda {
         switch(nombreOFecha)
         {
             case 1: //Nombre
+                System.out.println("Ordenados por nombre");
                 for(int i = 1; i < contactos.size(); i++)
                 {
                   for(int j = 0;j < contactos.size()-i;j++)
@@ -97,6 +98,7 @@ public class Agenda {
             //***************************************************************  
                 
             case 2: //Orden por fecha
+                System.out.println("Ordenados por fecha");
                 for(int i = 1; i < contactos.size(); i++)
                 {
                   for(int j = 0;j < contactos.size()-i;j++)
@@ -123,6 +125,27 @@ public class Agenda {
             default:
                 System.out.println("Elija correctamente");
                 break;
+        }
+        System.out.println("Busqueda");
+        String nombreBuscar="Nombre: Luis. Número: 6861519874. Cumpleaños: 2001-07-15";
+        for(int k;k<=contactos.size();k++){
+        boolean existencia = contactos.contains(nombreBuscar);
+        if(existencia){
+            System.out.println("Existe");
+        }else{
+            System.out.println("No existe");
+        }
+        }
+    }
+    public void busqueda(){
+        System.out.println("Busqueda");
+        String nombreBuscar="Luis";
+        boolean existencia = contactos.contains(nombreBuscar);
+        
+        if(existencia){
+            System.out.println("Existe");
+        }else{
+            System.out.println("No existe");
         }
     }
 }

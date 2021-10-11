@@ -55,7 +55,7 @@ public class Agenda {
     //Se agrega el contacto al array
     public void agregarContacto(String numero, String nombre, int dia, int mes, int año)
     {
-        Contacto nuevoContacto = new Contacto(numero, nombre, dia-1, mes, año);
+        Contacto nuevoContacto = new Contacto(numero, nombre, dia, mes-1, año);
         contactos.add(nuevoContacto);
     }
     

@@ -5,8 +5,8 @@
  */
 package agenda;
 
-import java.text.ParseException;
 import java.util.*;
+import java.text.*;
 
 
 public class Contacto {
@@ -31,17 +31,16 @@ public class Contacto {
     {
         return this.nombre;
     }
-    public Date getCumple()
+    public Calendar getCumple()
     {
-        return this.cumple;
+        return cumple;
     }
     
-    public void setCumple(String fecha)
+    @Override
+    public String toString()
     {
-        try {
-            cumple = new SimpleDateFormat("dd/MM/yyyy").parse(fecha);
-        } catch (ParseException ex) {
-            Logger.getLogger(Contacto.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        String formatoEnString = formato.format(cumple.getTime());
+        return "Nombre: " + nombre + ". Número: " + numero + ". Cumpleaños: " + formatoEnString;
     }
 }

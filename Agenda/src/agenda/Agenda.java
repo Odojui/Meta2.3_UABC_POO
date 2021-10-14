@@ -28,7 +28,8 @@ public class Agenda {
         agenda.mostrarContactos(1);
         System.out.println("");
         agenda.mostrarContactos(2);
-        
+        System.out.println("");
+        agenda.busquedaContacto("Luis");
         
         
         
@@ -58,6 +59,8 @@ public class Agenda {
         Contacto nuevoContacto = new Contacto(numero, nombre, dia, mes-1, año);
         contactos.add(nuevoContacto);
     }
+    
+    
     
     //Se utiliza el método de la burbuja
     public void mostrarContactos(int nombreOFecha)
@@ -126,27 +129,22 @@ public class Agenda {
                 System.out.println("Elija correctamente");
                 break;
         }
+    }
+    
+    
+    
+    public void busquedaContacto(String nombreBuscar){
         System.out.println("Busqueda");
-        String nombreBuscar="Luis";
+        
         for(int k=0;k<=contactos.size()-1;k++){
             String nombreComparar = contactos.get(k).getNombre();
             boolean existencia = nombreBuscar.compareTo(nombreComparar)==0;
             if(existencia){
-                System.out.println("Existe");
-            }else{
-                System.out.println("No existe");
+                System.out.println(nombreBuscar+" existe");
             }
         }
     }
-    public void busqueda(){
-        System.out.println("Busqueda");
-        String nombreBuscar="Luis";
-        boolean existencia = contactos.contains(nombreBuscar);
-        
-        if(existencia){
-            System.out.println("Existe");
-        }else{
-            System.out.println("No existe");
-        }
-    }
+    
+    
+    
 }

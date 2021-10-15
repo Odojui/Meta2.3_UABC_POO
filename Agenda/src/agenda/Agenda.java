@@ -10,48 +10,27 @@ import java.util.*;
 
 public class Agenda {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Agenda agenda = new Agenda();
-        
-        
-        agenda.agregarContacto("6861987523","Rebeca",28,01,1996);
-        agenda.agregarContacto("6861204177","Irma",17,10,1972);
-        agenda.agregarContacto("6863315483","Adriana",21,12,2000);
-        agenda.agregarContacto("6862038026","Alberto",10,12,1973);
-        agenda.agregarContacto("6861564896","Bertha",20,11,1994);
-        agenda.agregarContacto("6861519874", "Luis", 15, 07, 2001);
-        agenda.agregarContacto("6863310614","Carlos",29,06,2001);
-        
-        agenda.mostrarContactos(1);
-        System.out.println("");
-        agenda.mostrarContactos(2);
-        System.out.println("");
-        agenda.busquedaContacto("Luis");
-        
-        
-        
-        
-    }
+    
     
     /*
     To do: 
     1.- Agregar.                                                    Listo
-    2.- Consultar
+    2.- Consultar                                                   Listo
             *Ordenar contactos por nombre o fecha de cumpleaños.    Listo
-            *Búsqueda de un contacto por nombre o teléfono.
-    3.- Modificar
-    4.- Eliminar
+            *Búsqueda de un contacto por nombre o teléfono.         Listo
+    3.- Modificar                                                   Listo
+    4.- Eliminar                                                    Listo
     */
     
     ArrayList<Contacto> contactos;
     
+    //Constructor
     public Agenda()
     {
         contactos = new ArrayList();
     }
+    
+    
     
     //Se agrega el contacto al array
     public void agregarContacto(String numero, String nombre, int dia, int mes, int año)
@@ -95,7 +74,7 @@ public class Agenda {
                 for (Contacto c : contactos)
                 {
                     System.out.println(c);
-                }        
+                } 
                 break;
                 
             //***************************************************************  
@@ -133,18 +112,69 @@ public class Agenda {
     
     
     
-    public void busquedaContacto(String nombreBuscar){
-        System.out.println("Busqueda");
+    public int busquedaContacto(String datoBuscar)
+    {
+        int encontrado = -1;
         
         for(int k=0;k<=contactos.size()-1;k++){
             String nombreComparar = contactos.get(k).getNombre();
-            boolean existencia = nombreBuscar.compareTo(nombreComparar)==0;
-            if(existencia){
-                System.out.println(nombreBuscar+" existe");
+            String numeroComparar = contactos.get(k).getNumero();
+            boolean existeNombre = datoBuscar.compareTo(nombreComparar)==0;
+            boolean existeNumero = datoBuscar.compareTo(numeroComparar)==0;
+            if(existeNombre || existeNumero){
+                encontrado = k;
             }
+        }
+        
+        if(encontrado == -1)
+        {
+            System.out.println("El contacto "+ datoBuscar +" no existe en la agenda");
+        }
+        
+        return encontrado;
+    }
+    
+    public void mostrarContacto(String datoBuscar)
+    {
+        int numContacto = busquedaContacto(datoBuscar);
+        if(numContacto>=0)
+        {
+            System.out.println("Búsqueda\n"+contactos.get(numContacto));
         }
     }
     
     
     
+    /*
+        Desde PruebaAplicacion se realiza primero la pedida de datos a buscar
+        Posteriormente, se piden los datos a modificar. O sea que,
+        modificarContacto, no verifica los datos, solo los modifica, ya que
+        PruebaAplicacion ya verifico con anterioridad.
+        Esto dado que sería tedioso ingresar todos los datos a modificar
+        y en dado caso que no se encuentre el contacto, tener que intentar de 
+        nuevo. Es más conveniente primero verificar y luego modificar        
+    */
+    public void modificarContacto(int numContacto, String newNombre, String newNumero, int newDia, int newMes, int newAño)
+    {
+        if(numContacto != -1)
+        {
+            System.out.println("El contacto: \n"+contactos.get(numContacto));//Se muestra el contacto antes de modificar
+            Contacto contactoAux = new Contacto(newNombre, newNumero, newDia, newMes-1, newAño);
+            contactos.set(numContacto, contactoAux);
+            System.out.println("Ha sido modificado como: \n"+contactos.get(numContacto));//Se muestra el contacto modificado
+        }
+        
+    }
+    
+    
+    
+    public void eliminarContacto(String datoBuscar)
+    {
+        int numContacto = busquedaContacto(datoBuscar);
+        if(numContacto>=0)
+        {
+            System.out.println("El contacto\n"+contactos.get(numContacto)+"\nha sido eliminado");
+            contactos.remove(numContacto);
+        }
+    }
 }

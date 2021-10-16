@@ -54,7 +54,6 @@ public class Agenda {
         switch(nombreOFecha)
         {
             case 1: //Nombre
-                System.out.println("Ordenados por nombre");
                 for(int i = 1; i < contactos.size(); i++)
                 {
                   for(int j = 0;j < contactos.size()-i;j++)
@@ -82,7 +81,6 @@ public class Agenda {
             //***************************************************************  
                 
             case 2: //Orden por fecha
-                System.out.println("Ordenados por fecha");
                 for(int i = 1; i < contactos.size(); i++)
                 {
                   for(int j = 0;j < contactos.size()-i;j++)
@@ -106,15 +104,11 @@ public class Agenda {
                     //System.out.println(c);
                 } 
                 break;
-                
-            default:
-                System.out.println("Elija correctamente");
-                break;
         }
         return contactoOrdenado;
     }
     
-    public String busquedaContacto(String datoBuscar)
+    public String busquedaContacto(String datoBuscar, boolean busquedaCompleta)
     {
         int encontrado = -1;
         String contactoHallado="";
@@ -130,42 +124,19 @@ public class Agenda {
         
         if(encontrado == -1)
         {
-            System.out.println("El contacto "+ datoBuscar +" no existe en la agenda");
+            contactoHallado = "";
+            
         }
         if(encontrado>=0)
         {
-            System.out.println("Búsqueda\n"+contactos.get(encontrado));
-            contactoHallado=("Búsqueda\n"+contactos.get(encontrado));
+            if(busquedaCompleta==true)
+                contactoHallado=(contactos.get(encontrado).toString());
+            else
+                contactoHallado = contactos.get(encontrado).getNombre();
         }
         return contactoHallado;
     }
     
-   /* public void mostrarContacto(String datoBuscar)
-    {
-        int numContacto = busquedaContacto(datoBuscar);
-        if(numContacto>=0)
-        {
-            System.out.println("Búsqueda\n"+contactos.get(numContacto));
-        }
-    }*/
-    /*public String contactosGuardados(){
-        String contactoListado="";
-        for(int i=0;i<contactos.size();i++){
-            contactoListado+=contactos.get(i)+" \n";
-        }
-        return contactoListado;
-    }*/
-    
-    
-    /*
-        Desde PruebaAplicacion se realiza primero la pedida de datos a buscar
-        Posteriormente, se piden los datos a modificar. O sea que,
-        modificarContacto, no verifica los datos, solo los modifica, ya que
-        PruebaAplicacion ya verifico con anterioridad.
-        Esto dado que sería tedioso ingresar todos los datos a modificar
-        y en dado caso que no se encuentre el contacto, tener que intentar de 
-        nuevo. Es más conveniente primero verificar y luego modificar        
-    */
     public String modificarContacto(String datoBuscar, String newNombre, String newNumero, int newDia, int newMes, int newAño)
     {
         String contactoModificado,contactoAntiguo,contactoEnviado="";

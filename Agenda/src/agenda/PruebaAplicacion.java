@@ -25,6 +25,9 @@ import javax.swing.*;
         PruebaAplicacion pruebaApp = new PruebaAplicacion();
         
         pruebaApp.agregarContacto();
+        pruebaApp.agregarContacto();
+        pruebaApp.agregarContacto();
+        pruebaApp.consultaAvanzada();
     }
     
     Agenda agenda;
@@ -104,43 +107,46 @@ import javax.swing.*;
             contactos.add(nuevoContacto);
         }
         */
-        boolean sonDigitos;
+        boolean esValido;
         String numero;
         String nombre;
-        int dia;
-        int mes;
-        int año=0;//Hay que inicializar la variable para su uso posterior
+        //Hay que inicializar la variable para su uso posterior
+        int dia=0;
+        int mes=0;
+        int año=0;
         
         //Numero de telefono del contacto
         do
         {
-            sonDigitos = true;
+            esValido = true;
             String regex = "[0-9]+";//Todos los digitos del 0 al 9
             numero = JOptionPane.showInputDialog(null,"Número de Telefono","###-###-####");
             if(numero.matches(regex)!=true)
             {
                 JOptionPane.showMessageDialog(null,"Ingrese solo dígitos numéricos.","Error",JOptionPane.ERROR_MESSAGE);
-                sonDigitos = false;
+                esValido = false;
             }
             else
             {
                 if((numero.length())!=10)
                 {
                     JOptionPane.showMessageDialog(null,"Ingrese número a 10 dígitos.","Error",JOptionPane.ERROR_MESSAGE);
-                    sonDigitos = false;
+                    esValido = false;
                 }
             }
         }
-        while(sonDigitos == false);
+        while(esValido == false);
+        
         
         //Nombre del contacto
         nombre = JOptionPane.showInputDialog(null,"Nombre del contacto","Nombre");
+        
         
         //Año de cumpleaños del contacto
         int añoActual = Calendar.getInstance().get(Calendar.YEAR);
         do
         {
-            sonDigitos = true;
+            esValido = true;
             String añoString = JOptionPane.showInputDialog(null,"Año de cumpleaños","####");
             
             
@@ -148,7 +154,7 @@ import javax.swing.*;
             if(añoString.matches(regex)!=true)
             {
                 JOptionPane.showMessageDialog(null,"Ingrese solo dígitos numéricos.","Error",JOptionPane.ERROR_MESSAGE);
-                sonDigitos = false;
+                esValido = false;
             }
             else
             {
@@ -156,24 +162,107 @@ import javax.swing.*;
                 if(año>añoActual)
                 {
                     JOptionPane.showMessageDialog(null,"Ingrese un año válido.","Error",JOptionPane.ERROR_MESSAGE);
-                    sonDigitos = false;
+                    esValido = false;
                 }
             }
-        }while(sonDigitos == false);
-        JOptionPane.showMessageDialog(null,"Año: "+año,"Nombre ventana",JOptionPane.INFORMATION_MESSAGE);
+        }while(esValido == false);
         
-        /*
+        
         //Mes de cumpleaños del contacto
-        Integer[] mesLista = {1,2,3,4,5,6,7,8,9,10,11,12};
-        mes = (Integer)JOptionPane.showInputDialog(null,"Día de cumpleaños","Cumpleaños: día",
-        JOptionPane.INFORMATION_MESSAGE,null,mesLista,mesLista[0]);
-        JOptionPane.showMessageDialog(null,"Numero: "+mes,"Nombre ventana",JOptionPane.INFORMATION_MESSAGE);
+        Object[] listaMes = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+        Object respuestaMes = JOptionPane.showInputDialog(null,"Escoge tu mes de cumpleaños","Cumpleaños: mes",
+        JOptionPane.INFORMATION_MESSAGE,null,listaMes,listaMes[0]);
+        String mesString = respuestaMes.toString();
+        switch(mesString)
+        {
+            case "Enero":
+                    mes = 1;
+                    break;
+            case "Febrero":
+                    mes = 2;
+                    break;
+            case "Marzo":
+                    mes = 3;
+                    break;
+            case "Abril":
+                    mes = 4;
+                    break;
+            case "Mayo":
+                    mes = 5;
+                    break;
+            case "Junio":
+                    mes = 6;
+                    break;
+            case "Julio":
+                    mes = 7;
+                    break;
+            case "Agosto":
+                    mes = 8;
+                    break;
+            case "Septiembre":
+                    mes = 9;
+                    break;
+            case "Octubre":
+                    mes = 10;
+                    break;
+            case "Noviembre":
+                    mes = 11;
+                    break;
+            case "Diciembre":
+                    mes = 12;
+                    break;
+        }
         
         
-        Integer[] lista = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
-        Integer respuesta = (Integer)JOptionPane.showInputDialog(null,"Día de cumpleaños","Cumpleaños: día",
-        JOptionPane.INFORMATION_MESSAGE,null,lista,lista[0]);
-        JOptionPane.showMessageDialog(null,"Numero: "+respuesta,"Nombre ventana",JOptionPane.INFORMATION_MESSAGE);
-        */
+        //Día de cumpleaños del contacto
+        do
+        {
+            esValido = true;
+            Integer[] listaDia = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31};
+            Integer respuestaDia = (Integer)JOptionPane.showInputDialog(null,"Día de cumpleaños","Cumpleaños: día",
+            JOptionPane.INFORMATION_MESSAGE,null,listaDia,listaDia[0]);
+            if(mes==2)
+            {
+                if (((año % 4 == 0) && (año % 100!= 0)) || (año%400 == 0))
+                {
+                    if(respuestaDia>29)
+                        esValido = false;
+                }  
+                else
+                    if(respuestaDia>28)
+                        esValido = false;
+            }
+            else
+                if(((mes==2)||(mes==4)||(mes==6)||(mes==9)||(mes==11))&&(respuestaDia>30))
+                    esValido = false;
+                      
+        if(esValido==false)
+            JOptionPane.showMessageDialog(null,"Ingrese un día válido.","Error",JOptionPane.ERROR_MESSAGE);
+        else
+            dia = respuestaDia;
+        }while(esValido == false);
+                
+        
+        agenda.agregarContacto(numero, nombre, dia, mes, año);
+    }
+    
+    public void consulta(){
+        JOptionPane.showMessageDialog(null, agenda.contactosGuardados());
+    }
+    public void consultaAvanzada(){
+        int consultaOpcion=0;
+        Object[] consultaOrdeada = {"Por fecha","Por nombre"};
+        Object opcionConsulta = JOptionPane.showInputDialog(null,"Escoge tu ordenado","Consulta de agenda ordenada",
+        JOptionPane.INFORMATION_MESSAGE,null,consultaOrdeada,consultaOrdeada[0]);
+        String consultaOrdenada = opcionConsulta.toString();
+        switch(consultaOrdenada){
+            case "Por nombre":
+                    consultaOpcion = 1;
+            break;
+            case "Por fecha":
+                    consultaOpcion = 2;
+            break;
+        }
+        JOptionPane.showMessageDialog(null, agenda.mostrarContactos(consultaOpcion));
     }
 }

@@ -42,10 +42,11 @@ public class Agenda {
     
     
     //Se utiliza el método de la burbuja
-    public void mostrarContactos(int nombreOFecha)
+    public String mostrarContactos(int nombreOFecha)
     {
         Contacto contactoAuxiliar;
         String nombreContacto1;
+        String contactoOrdenado="";
         String nombreContacto2;
         Calendar cumpleContacto1;
         Calendar cumpleContacto2;
@@ -73,7 +74,8 @@ public class Agenda {
                 
                 for (Contacto c : contactos)
                 {
-                    System.out.println(c);
+                    contactoOrdenado+=c+" \n";
+                    //System.out.println(c);
                 } 
                 break;
                 
@@ -100,7 +102,8 @@ public class Agenda {
                 
                 for (Contacto c : contactos)
                 {
-                    System.out.println(c);
+                    contactoOrdenado+=c+" \n";
+                    //System.out.println(c);
                 } 
                 break;
                 
@@ -108,9 +111,8 @@ public class Agenda {
                 System.out.println("Elija correctamente");
                 break;
         }
+        return contactoOrdenado;
     }
-    
-    
     
     public int busquedaContacto(String datoBuscar)
     {
@@ -142,7 +144,13 @@ public class Agenda {
             System.out.println("Búsqueda\n"+contactos.get(numContacto));
         }
     }
-    
+    public String contactosGuardados(){
+        String contactoListado="";
+        for(int i=0;i<contactos.size();i++){
+            contactoListado+=contactos.get(i)+" \n";
+        }
+        return contactoListado;
+    }
     
     
     /*

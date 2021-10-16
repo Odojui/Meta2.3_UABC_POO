@@ -9,18 +9,6 @@ import java.util.*;
 
 
 public class Agenda {
-
-    
-    
-    /*
-    To do: 
-    1.- Agregar.                                                    Listo
-    2.- Consultar                                                   Listo
-            *Ordenar contactos por nombre o fecha de cumpleaños.    Listo
-            *Búsqueda de un contacto por nombre o teléfono.         Listo
-    3.- Modificar                                                   Listo
-    4.- Eliminar                                                    Listo
-    */
     
     ArrayList<Contacto> contactos;
     
@@ -74,7 +62,6 @@ public class Agenda {
                 for (Contacto c : contactos)
                 {
                     contactoOrdenado+=c+" \n";
-                    //System.out.println(c);
                 } 
                 break;
                 
@@ -185,15 +172,7 @@ public class Agenda {
             }
         }
         
-        if(encontrado == -1)
-        {
-            System.out.println("El contacto "+ datoBuscar +" no existe en la agenda");
-        }
         numContacto=encontrado;
-        if(numContacto>=0)
-        {
-            System.out.println("El contacto\n"+contactos.get(numContacto)+"\nha sido eliminado");
-            contactos.remove(numContacto);
-        }
+        contactos.remove(numContacto);
     }
 }

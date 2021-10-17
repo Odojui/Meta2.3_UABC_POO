@@ -1,8 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @desc
+ * En la clase agenda se toma la lista donde se guardarán los contactos y
+ * maneja sus métodos para interactuar de tal forma que se manipula la
+ * información dentro de estos. Las interacciones que maneja son agregar
+ * contactos a la lista, modificarlos, removerlos, mostrar en lista ordenada
+ * todos los contactos y mostrar algún contacto en específico.
+ *
+ * @author José Carlos Ponce Odohui & Luis Alberto Alvarado Mendoza
+ * @version 16/10/2021
  */
+
+
 package agenda;
 
 import java.util.*;

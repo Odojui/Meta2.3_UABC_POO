@@ -1,8 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @desc
+ * Dentro de contacto se tienen los tipos de datos primordiales con los que se
+ * trabajarán dentro de la agenda. Se tienen métodos básicos y comunes como el
+ * get y toString, dado que la clase que realmente los trabaja es la
+ * agenda.
+ *
+ * @author José Carlos Ponce Odohui & Luis Alberto Alvarado Mendoza
+ * @version 16/10/2021
  */
+
+
 package agenda;
 
 import java.util.*;

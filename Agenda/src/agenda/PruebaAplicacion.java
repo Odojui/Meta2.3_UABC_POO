@@ -1,23 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @desc
+ * La función de PruebaAplicacion es la de ser la interfaz de usuario para
+ * manejar los datos de Agenda. Se facilita la forma que se interactúan con los
+ * métodos para que su manejo sea lo más fácil posible para el usuario, usando
+ * herramientas interactivas como la librería de JOptionPane.
+ * Se podría decir en una analogía que PruebaAplicacion es el yunque, Agenda
+ * es el mazo y Contacto es el metal que se trabaja, todos complementandose
+ * entre si para manejar los datos con facilidad
+ *
+ * @author José Carlos Ponce Odohui & Luis Alberto Alvarado Mendoza
+ * @version 16/10/2021
  */
+
+
 package agenda;
 
 import java.util.*;
 import javax.swing.*;
 
-/**
- *
- * @author carlo
- */
-
-
-
-    /**
-    * @param args the command line arguments
-    */
     public class PruebaAplicacion {
     
     public static void main(String[] args)
